@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  openresty:
+    image: openresty/openresty:alpine  # 轻量版
+    container_name: openresty
+    ports:
+      - "8888:80"  # 映射宿主机8080端口
+    volumes:
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./lua:/usr/local/openresty/nginx/lua
+    depends_on:
+      - redis
+    restart: always
+    #加额外的 DNS 配置以确保容器可以解析 host.docker.internal ：
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: always
+
+volumes:
+  redis-data:
