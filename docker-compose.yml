@@ -16,13 +16,17 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
   redis:
-    image: redis:7.2-alpine
+    image: redis:7.4.2
     container_name: redis
     ports:
       - "6379:6379"
     volumes:
       - redis-data:/data
-    restart: always
 
 volumes:
   redis-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/luyangcai/trae/LuaShield/docker/redis/data

@@ -166,8 +166,18 @@ docker ps
 
 ```bash
 docker exec -it redis redis-cli
-127.0.0.1:6379> set user:test-api-key "user1"
+set user:test-api-key "user1"
+列出所有 key：
+keys *           # 列出所有键
+get user:test-api-key01    # 获取特定键的值
+# 一次性查看所有键值对
+docker exec -it redis redis-cli --scan | while read -r key; do
+  echo "Key: $key"
+  docker exec -it redis redis-cli get "$key"
+  echo "---"
+done
 ```
+
 
 ---
 
