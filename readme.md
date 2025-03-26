@@ -236,7 +236,6 @@ docker-compose restart      # 重启服务
 docker-compose down -v      # 停止并清理 volumes 数据（会删掉 redis 数据）
 ```
 
----
 
 ✅ 10. **完整目录和文件**
 
@@ -248,9 +247,17 @@ docker-compose down -v      # 停止并清理 volumes 数据（会删掉 redis �
     └── access.lua
 ```
 
----
-
+✅ 10. **nginx重启相关命令** 
+nginx -s reload
+nginx -s stop && nginx
 ### 🚀 小结
+
+✅ 11. **windows部署**
+下载redis和openresty
+openresty地址：
+https://openresty.org/download/openresty-1.27.1.1-win64.zip
+启动redis服务
+配置openresty环境，启动nginx服务
 
 这个方案：
 
