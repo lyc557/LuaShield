@@ -13,7 +13,8 @@ end
 local red = redis:new()
 red:set_timeout(1000) -- 1秒超时
 
-local ok, err = red:connect("redis", 6379)  -- redis 是 docker-compose 的服务名，自动DNS解析
+local redis_host = "127.0.0.1"
+local ok, err = red:connect(redis_host, 6379)  -- redis 是 docker-compose 的服务名，自动DNS解析
 if not ok then
     ngx.status = 500
     ngx.say(cjson.encode({ code = 500, message = "Redis connection failed: " .. (err or "") }))
